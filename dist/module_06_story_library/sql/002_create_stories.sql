@@ -10,7 +10,7 @@ CREATE TABLE stories (
     setting     TEXT NOT NULL,
     plot        TEXT NOT NULL,
     body        TEXT NOT NULL,        -- the generated story body, stored verbatim
-    model_name  TEXT NOT NULL,        -- e.g. 'gemini-2.5-flash-lite' — same column shape as V1's interactions
+    model_name  TEXT NOT NULL,        -- e.g. 'gemini-3.1-flash-lite' — same column shape as V1's interactions
     created_at  TIMESTAMPTZ DEFAULT NOW()
 );
 

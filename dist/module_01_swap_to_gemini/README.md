@@ -38,7 +38,7 @@ curl -s http://localhost:8000/healthz
 # Postgres recorded the new model name:
 psql "$DATABASE_URL" -tAc \
     "SELECT model_name FROM interactions ORDER BY id DESC LIMIT 1"
-# Expected: gemini-2.5-flash-lite
+# Expected: gemini-3.1-flash-lite
 
 # Or run the all-in-one check (server must be up):
 ./scripts/verify_module_1.sh
@@ -62,7 +62,7 @@ This is an early-tier module — the prompts below are explicit and many on purp
 > In V1, the system prompt was a `{"role": "system", "content": SYSTEM_PROMPT}` dict inside the `messages` array we sent to Ollama. Here, it's `types.GenerateContentConfig(system_instruction=SYSTEM_PROMPT)` attached to a config object. Trace through what's actually being sent over the wire to Google in each case. What stayed the same conceptually? What's now hidden from us by the SDK?
 
 **About `GEMINI_MODEL` being a constant:**
-> `OLLAMA_MODEL` was an env var in V1. `GEMINI_MODEL = "gemini-2.5-flash-lite"` is a hardcoded constant here. Argue both sides: when does it make sense to make a model name a hardcoded constant, and when does it make sense to make it an env var? Then tell me which side this module's doctrine is on, and why.
+> `OLLAMA_MODEL` was an env var in V1. `GEMINI_MODEL = "gemini-3.1-flash-lite"` is a hardcoded constant here. Argue both sides: when does it make sense to make a model name a hardcoded constant, and when does it make sense to make it an env var? Then tell me which side this module's doctrine is on, and why.
 
 **Curiosity / "what if":**
 > What happens if I delete the `except genai_errors.APIError:` block entirely and let the SDK's exception bubble up? Try it (just in your head — predict the response shape and HTTP status code). Then put the block back and explain why catching-and-re-raising-as-`HTTPException(502)` is doctrine-compliant here even though the doctrine forbids "try/except that catches and re-raises with no added value."

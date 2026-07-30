@@ -88,7 +88,7 @@ A child-safety-aware bedtime story generator. A parent enters their child's name
 ## Stack
 
 - **Python 3.11 + FastAPI** — backend HTTP API (3 endpoints: `POST /story`, `GET /stories`, `GET /healthz`).
-- **Google Gemini API (`gemini-2.5-flash-lite`)** — hosted LLM for story generation, called via the `google-genai` SDK.
+- **Google Gemini API (`gemini-3.1-flash-lite`)** — hosted LLM for story generation, called via the `google-genai` SDK.
 - **Postgres + psycopg 3** — managed Postgres on Render; one table (`stories`) with a composite index on `(child_name, created_at DESC)`.
 - **Plain HTML + CSS + vanilla JS** — no framework, no build step. Three static files served from Vercel.
 - **Render + Vercel** — backend on Render (Blueprint deploy from `render.yaml`), frontend on Vercel (static deploy from `vercel.json`).
